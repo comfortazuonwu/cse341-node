@@ -7,13 +7,13 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI =
-  'mongodb+srv://garnet:Ngozimine17@mongostarter.vg8hy.mongodb.net/myFirstDatabase';
-
+const MONGODB_URI = process.env.MONGODB_URI;
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -65,10 +65,18 @@ app.use(authRoutes);
 
 app.use(errorController.get404);
 
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  family: 4
+};
+
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URI, options)
   .then(result => {
-    app.listen(3000);
+    app.listen(PORT);
   })
   .catch(err => {
     console.log(err);
