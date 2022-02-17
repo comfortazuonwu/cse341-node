@@ -1,5 +1,5 @@
 const path = require('path');
-
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,6 +9,7 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
+
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
@@ -65,11 +66,17 @@ app.use(authRoutes);
 
 app.use(errorController.get404);
 
+const cors0ptions = {
+  origin: "https://cse341comfy.herokuapp.com/",
+  optionsSuccessStatus:200
+};
+app.use(cors(cors0ptions));
+
 const options = {
-  useUnifiedTopology: true,
+  // useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
+  // useCreateIndex: true,
+  // useFindAndModify: false,
   family: 4
 };
 
