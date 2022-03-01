@@ -2,6 +2,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  background-color: black;
 }
 
 .orders__item h1 {
@@ -24,6 +25,7 @@
 .orders__products-item {
     margin: 0.5rem 0;
     padding: 0.5rem;
-    border: 1px solid #00695c;
-    color: #00695c;
+    background-color: black;
+    
+    color: #CFC2B1;
 }

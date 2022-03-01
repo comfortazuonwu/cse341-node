@@ -3,6 +3,8 @@
     max-width: 90%;
     margin: auto;
     display: block;
+    background-color: black;
+    padding: 3em;
 }
 
 .product-item {
